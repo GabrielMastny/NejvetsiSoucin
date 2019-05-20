@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="NasobeniEdhouse.Views.StartUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NasobeniEdhouse.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="Hledání největšího součinu" FontFamily="Calibri" FontSize="25" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
+       <DockPanel Dock="Bottom" Grid.Row="1" Grid.ColumnSpan="2">
+            <Label HorizontalAlignment="Left" DockPanel.Dock="Top">Aplikace vyhledává největší součin zvoleného počtu za sebou jdoucích čísel.</Label>
+           <BulletDecorator Margin="5" DockPanel.Dock="Top" Grid.Row="1" Grid.ColumnSpan="2">
+               <BulletDecorator.Bullet>
+                   <Ellipse Height="10" Width="10" Fill="Black"/>
+               </BulletDecorator.Bullet>
+                <TextBlock Grid.Row="1" Grid.ColumnSpan="2">Zadejte číselný řetězec do textového pole na spodní straně aplikace</TextBlock>
+               
+           </BulletDecorator>
+           <BulletDecorator Margin="5" DockPanel.Dock="Top" >
+               <BulletDecorator.Bullet>
+                   <Ellipse Height="10" Width="10" Fill="Black"/>
+               </BulletDecorator.Bullet>
+               <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2">Pomocí posuvníku vyberte kolik čísel se bude na součinu podílet a vyberte jakým způsobem se budou za sebou jednotlivé součiny řadit (lze změnit i během výpočtů). Vyhledávání potvrďte tlačítkem Najdi násobek.</TextBlock>
+
+           </BulletDecorator>
+           <BulletDecorator DockPanel.Dock="Top" Margin="5" >
+               <BulletDecorator.Bullet>
+                   <Ellipse Height="10" Width="10" Fill="Black"/>
+               </BulletDecorator.Bullet>
+               <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2">Při běhu aplikace se budou v grafu zobrazovat všechny nenulové výsledky výpočtů, v grafu se lze pohybovat kolečkem myči nebo potáhnutím, pokud by graf neukazoval žádné sloupečky je možné si hodnoty přiblížit zascrollováním.</TextBlock>
+
+           </BulletDecorator>
+
+        </DockPanel>
+
+        
+        
+    </Grid>
+</UserControl>
