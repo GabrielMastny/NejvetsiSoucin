@@ -12,7 +12,7 @@
         
     </UserControl.Resources>
     <Grid>
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" Pan="{Binding Path=ZoomingMode, Mode=TwoWay}" Zoom="{Binding Path=ZoomingMode, Mode=TwoWay}" DisableAnimations="True">
+        <lvc:CartesianChart Series="{Binding SeriesCollection}" Zoom="{Binding Path=ZoomingMode, Mode=TwoWay}" DisableAnimations="True">
             <lvc:CartesianChart.Resources>
                 <Style TargetType="lvc:DefaultTooltip">
                     <Setter Property="ShowTitle" Value="False"></Setter>
@@ -30,7 +30,7 @@
                           Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" MinValue="{Binding XMinValue, Mode=TwoWay}" MaxValue="{Binding Path=XMaxValue, Mode=TwoWay}" />
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis  Name="Y" LabelFormatter="{Binding YFormatter}" MaxRange="{Binding Path=YMaxRange, Mode=TwoWay}" MinRange="{Binding Path=YMaxRange, Mode=TwoWay}" MinValue="{Binding YMinValue, Mode=TwoWay}" />
+                <lvc:Axis  Name="Y" LabelFormatter="{Binding YFormatter}"  MinValue="{Binding YMinValue, Mode=TwoWay}" />
             </lvc:CartesianChart.AxisY>
 
         </lvc:CartesianChart>

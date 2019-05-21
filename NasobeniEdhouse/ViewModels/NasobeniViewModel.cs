@@ -193,8 +193,10 @@ namespace NasobeniEdhouse.ViewModels
                     break;
                 case State.Stopped:
                 {
+                    
                     if (await processedValuesHolder.StopProcessing())
                     {
+                        
                         infoViewModel.InterruptionVisibility = Visibility.Visible;
                         currentState = State.Stopped;
                         ActionButtonText = "Edit";
@@ -207,7 +209,7 @@ namespace NasobeniEdhouse.ViewModels
                     break;
                 case State.Edit:
                 {
-                    isNotProcessing = true;
+                    IsNotProcessing = true;
                         currentState = State.Edit;
                         ActionButtonText = "Najdi násobek";
                         GraphPartViewModel = startUpViewModel;

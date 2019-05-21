@@ -54,10 +54,12 @@ namespace NasobeniEdhouse.Models
             biggestNumber = new List<Product>();
             cancelRequested = new CancellationTokenSource();
             processedProducts = new List<Product>();
+            seriesCollection.First().Values = new ChartValues<long>();
+            SeriesChangedEvent(seriesCollection);
 
             try
             {
-                validatedInput = await InputProcessor.IsInputValid(inputValues, cancelRequested.Token);
+                validatedInput = await InputProcessor.ValidateInput(inputValues, cancelRequested.Token);
 
             }
             catch (OperationCanceledException e)

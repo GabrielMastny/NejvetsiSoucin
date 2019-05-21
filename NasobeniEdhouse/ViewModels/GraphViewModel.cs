@@ -22,32 +22,7 @@ namespace NasobeniEdhouse.ViewModels
             this.processedValuesHolder = processedValuesHolder;
             this.processedValuesHolder.SeriesChangedEvent += UpdateSeries;
             
-            SeriesCollection = new SeriesCollection
-            {
-                
-                new ColumnSeries
-                {
-                    
-                    //Title = "2015",
-                    Values = new ChartValues<long> { 3, 4, 5 },
-                    Fill = new SolidColorBrush() {Color =Colors.Blue}
-                }
-                ,
-                new ColumnSeries
-                {
-                    //Title = "2015",
-                    Values = new ChartValues<long> { 2 ,3,4 },
-                    Fill = new SolidColorBrush() {Color =Colors.Red}
-                }
-            };
-
-
-
-            //also adding values updates and animates the chart automatically
-            //SeriesCollection[1].Values.Add(48d);
-
-            //Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
-            //Formatter = value => value.ToString("N");
+            SeriesCollection = new SeriesCollection{new ColumnSeries(){Values = new ChartValues<long>()}};
 
 
             ZoomingMode = ZoomingOptions.X;
@@ -67,12 +42,12 @@ namespace NasobeniEdhouse.ViewModels
             get { return seriesCollection;}
             set
             {
+                
                 seriesCollection = value;
-                XMaxValue = seriesCollection[0].Values.Count;
+                    XMaxValue = seriesCollection[0].Values.Count;
                 NotifyOfPropertyChange(() => SeriesCollection);
             }
         }
-        public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
 
 
@@ -122,13 +97,10 @@ namespace NasobeniEdhouse.ViewModels
             get { return xMinValue; }
             set
             {
+                Console.WriteLine($"xMin {value}");
                 if (value < 0)
                 {
                     xMinValue = 0;
-                }
-                else if ((xMaxValue - xMinValue) > 80)
-                {
-                    xMinValue = (xMaxValue - 80);
                 }
                 else xMinValue = value;
                 
@@ -143,6 +115,7 @@ namespace NasobeniEdhouse.ViewModels
             get { return yMinValue; }
             set
             {
+                Console.WriteLine($"yMin {value}");
                 if (value < 0)
                 {
                     yMinValue = 0;
@@ -160,13 +133,26 @@ namespace NasobeniEdhouse.ViewModels
             get { return xMaxValue; }
             set
             {
-                if (value - xMinValue > 50)
+                double toBeChangedTo = value;
+                Console.WriteLine($"xMax {value}");
+                if (toBeChangedTo > seriesCollection[0].Values.Count)
                 {
-                    xMinValue = value - 50;
-                    NotifyOfPropertyChange(()=> XMinValue);
-                    xMaxValue = value;
-                }else xMaxValue = value;
-                NotifyOfPropertyChange(()=> XMaxValue);
+                    toBeChangedTo = seriesCollection[0].Values.Count;
+                    
+                }else if (toBeChangedTo > (xMinValue + 50))
+                {
+                    XMinValue = toBeChangedTo - 50;
+                }
+                else if (toBeChangedTo > xMinValue)
+                {
+                    
+                    
+                        xMaxValue = toBeChangedTo;
+                        NotifyOfPropertyChange(() => XMaxValue);
+                   
+                }
+
+                
             }
         }
 
@@ -177,6 +163,7 @@ namespace NasobeniEdhouse.ViewModels
             get { return yMaxRange; }
             set
             {
+                Console.WriteLine($"yRange {value}");
                 yMaxRange = 2;
                 NotifyOfPropertyChange(()=> YMaxRange);
             }

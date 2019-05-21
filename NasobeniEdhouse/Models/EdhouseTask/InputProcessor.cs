@@ -11,8 +11,13 @@ namespace NasobeniEdhouse.Models.EdhouseTask
 {
     static class InputProcessor
     {
-
-        public static async Task<List<int>> IsInputValid(string input, CancellationToken cancelRequest)
+        /// <summary>
+        /// Validates string input, input has to contain only numerical characters, otherwise is thrown exception
+        /// </summary>
+        /// <param name="input">expected only numerical characters</param>
+        /// <param name="cancelRequest">token for cancelation of method</param>
+        /// <returns></returns>
+        public static async Task<List<int>> ValidateInput(string input, CancellationToken cancelRequest)
         {
             List<int> convertedValuesList = new List<int>();
             foreach (char iterator in input)
@@ -33,6 +38,14 @@ namespace NasobeniEdhouse.Models.EdhouseTask
             return convertedValuesList;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="progressRepport">delegate for reporting of progress of method</param>
+        /// <param name="validatedInput"> List of validated values</param>
+        /// <param name="numberRange"> range of neighbouring numbers</param>
+        /// <param name="cancelRequested">token for cancelation of method</param>
+        /// <returns></returns>
         public static async Task ProcessValidatedInput(IProgress<ProcessingReport> progressRepport, List<int> validatedInput,int numberRange, CancellationToken cancelRequested)
         {
             
@@ -55,7 +68,7 @@ namespace NasobeniEdhouse.Models.EdhouseTask
                             order++;
 
 
-                            await Task.Delay(10);
+                            //await Task.Delay(500);
                         }
 
                         progressRepport.Report(new ProcessingReport(getPercentage(),
